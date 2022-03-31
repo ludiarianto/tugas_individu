@@ -1,75 +1,34 @@
-function addChar(input, character) {
-	if(input.value == null || input.value == "0")
-		input.value = character
-	else
-		input.value += character
+function sin(){
+    document.calculator.result.value=Math.sin(document.calculator.result.value);
 }
-
-function cos(form) {
-	form.display.value = Math.cos(form.display.value);
+function cos(){
+    document.calculator.result.value=Math.cos(document.calculator.result.value);
 }
-
-function sin(form) {
-	form.display.value = Math.sin(form.display.value);
+function tan(){
+    document.calculator.result.value=Math.tan(document.calculator.result.value);
 }
-
-function tan(form) {
-	form.display.value = Math.tan(form.display.value);
+function BACKSPC(){
+    var a = document.calculator.result.value;
+    document.calculator.result.value = a.substr(0, a.length-1);
 }
-
-function sqrt(form) {
-	form.display.value = Math.sqrt(form.display.value);
+function square(){
+    document.calculator.result.value=Math.pow(document.calculator.result.value, 2);
 }
-
-function ln(form) {
-	form.display.value = Math.log(form.display.value);
+function quibbed(){
+    document.calculator.result.value=Math.pow(document.calculator.result.value, 3);
 }
-
-function exp(form) {
-	form.display.value = Math.exp(form.display.value);
+function sqrt2(){
+    document.calculator.result.value=Math.pow(document.calculator.result.value, 1/2);
 }
-
-function deleteChar(input) {
-	input.value = input.value.substring(0, input.value.length - 1)
+function sqrt3(){
+    document.calculator.result.value=Math.pow(document.calculator.result.value, 1/3);
 }
-var val = 0.0;
-function percent(input) {
-  val = input.value;
-  input.value = input.value + "%";
+function number(value){
+    document.calculator.result.value += value;
 }
-
-function changeSign(input) {
-	if(input.value.substring(0, 1) == "-")
-		input.value = input.value.substring(1, input.value.length)
-	else
-		input.value = "-" + input.value
+function remv(){
+    document.calculator.result.value = " ";
 }
-
-function compute(form) {
-  //if (val !== 0.0) {
-   // var percent = form.display.value;  
-   // percent = pcent.substring(percent.indexOf("%")+1);
-   // form.display.value = parseFloat(percent)/100 * val;
-    //val = 0.0;
- // } else 
-    form.display.value = eval(form.display.value);
-  }
-
-
-function square(form) {
-	form.display.value = eval(form.display.value) * eval(form.display.value)
-}
-
-function checkNum(str) {
-	for (var i = 0; i < str.length; i++) {
-		var ch = str.charAt(i);
-		if (ch < "0" || ch > "9") {
-			if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
-				&& ch != "(" && ch!= ")" && ch != "%") {
-				alert("invalid entry!")
-				return false
-				}
-			}
-		}
-		return true
+function equal(){
+    document.calculator.result.value = eval(document.calculator.result.value);
 }
