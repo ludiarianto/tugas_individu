@@ -1,79 +1,75 @@
-function getHistory(){
-    return document.getElementById("history-value").innerText;
+function addChar(input, character) {
+	if(input.value == null || input.value == "0")
+		input.value = character
+	else
+		input.value += character
 }
-function printHistory(num){
-    document.getElementById("history-value").innerText=num;
+
+function cos(form) {
+	form.display.value = Math.cos(form.display.value);
 }
-function getOutput(){
-    return document.getElementById("output-values").innerText;
+
+function sin(form) {
+	form.display.value = Math.sin(form.display.value);
 }
-function printOutput(num){
-    if(num==""){
-    document.getElementById("output-values").innerText=num;
-    }
-    else{
-        document.getElementById("output-values").innerText=getFormattedNumber(num);
-    }
+
+function tan(form) {
+	form.display.value = Math.tan(form.display.value);
 }
-function getFormattedNumber(num){
-    if(num=="-"){
-        return "";
-    }
-    var n=Number(num);
-    var value= n.toLocaleString("en");
-    return value;
+
+function sqrt(form) {
+	form.display.value = Math.sqrt(form.display.value);
 }
-function reverseNumberFormat(num){
-    return Number(num.replace(/,/g, ''));
+
+function ln(form) {
+	form.display.value = Math.log(form.display.value);
 }
-var operator = document.getElementsByClassName("operator");
-for( var i=0;i<operator.length;i++){
-    operator[i].addEventListener('click',function(){
-            if(this.id=="clear"){
-                printHistory("");
-                printOutput("");
-            }
-            else if(this.id=="backspace"){
-                var
-                output=reverseNumberFormat(getOutput()).toString();
-                if(output){//if output has a value
-                    output= output.substr(0,output.length-1);
-                printOutput(output);
-                }
-            }
-            else{
-                var output = getOutput();
-                var history = getHistory();
-                if(output==""&&history!=""){
-                    if(isNaN(history[history.length-1])){
-                        history=history.substr(0,history.length-1);
-                    }
-                }
-                if(output!="" || history!=""){
-                    output= output==""?
-                    output:reverseNumberFormat(output);
-                    history=history+output;
-                    if(this.id=="="){
-                        var result= eval(history);
-                        printOutput(result);
-                        printHistory("");
-                    }
-                    else{
-                        history=history+this.id;
-                        printHistory(history);
-                        printOutput("");
-                    }
-                }
-            }
-    });
+
+function exp(form) {
+	form.display.value = Math.exp(form.display.value);
 }
-var number = document.getElementsByClassName("number");
-for(var i=0;i<number.length;i++){
-    number[i].addEventListener('click',function(){
-        var output=reverseNumberFormat(getOutput());
-        if(output!=NaN){
-            output=output+this.id;
-            printOutput(output);
-        }
-    });
+
+function deleteChar(input) {
+	input.value = input.value.substring(0, input.value.length - 1)
+}
+var val = 0.0;
+function percent(input) {
+  val = input.value;
+  input.value = input.value + "%";
+}
+
+function changeSign(input) {
+	if(input.value.substring(0, 1) == "-")
+		input.value = input.value.substring(1, input.value.length)
+	else
+		input.value = "-" + input.value
+}
+
+function compute(form) {
+  //if (val !== 0.0) {
+   // var percent = form.display.value;  
+   // percent = pcent.substring(percent.indexOf("%")+1);
+   // form.display.value = parseFloat(percent)/100 * val;
+    //val = 0.0;
+ // } else 
+    form.display.value = eval(form.display.value);
+  }
+
+
+function square(form) {
+	form.display.value = eval(form.display.value) * eval(form.display.value)
+}
+
+function checkNum(str) {
+	for (var i = 0; i < str.length; i++) {
+		var ch = str.charAt(i);
+		if (ch < "0" || ch > "9") {
+			if (ch != "/" && ch != "*" && ch != "+" && ch != "-" && ch != "."
+				&& ch != "(" && ch!= ")" && ch != "%") {
+				alert("invalid entry!")
+				return false
+				}
+			}
+		}
+		return true
 }
